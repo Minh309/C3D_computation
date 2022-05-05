@@ -453,5 +453,5 @@ end
 
 clear data_F data_S data_T
 
-sgtitle(sprintf('%s : Kinematics - Angels trajectories', object.Subject(i).name)) 
+sgtitle(sprintf('%s : Kinematics - Angel trajectories', object.Subject(i).name)) 
 end

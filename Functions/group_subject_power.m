@@ -6,7 +6,7 @@ if isfield(object.Data(i).PowerFit,'left')
             if strncmp(object.Data(i).PowerFit.left.cycle(j).data(k).name,'LHip',4)
                  % Hip 
                 object.Subject(Subject_index).Power.Hip.left = [object.Subject(Subject_index).Power.Hip.left, object.Data(i).PowerFit.left.cycle(j).data(k).parameter(3,:)'];
-            elseif strncmp(object.Data(i).PowerFit.left.cycle(j).data(k).name,'Lknee',4)
+            elseif strncmp(object.Data(i).PowerFit.left.cycle(j).data(k).name,'LKnee',4)
                 % Knee
                 object.Subject(Subject_index).Power.Knee.left = [object.Subject(Subject_index).Power.Knee.left, object.Data(i).MomentFit.left.cycle(j).data(k).parameter(3,:)'];
             elseif strncmp(object.Data(i).PowerFit.left.cycle(j).data(k).name,'LAnkle',4)

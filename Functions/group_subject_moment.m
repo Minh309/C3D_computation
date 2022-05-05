@@ -12,7 +12,7 @@ if isfield(object.Data(i).MomentFit,'left')
                 % Knee
                 object.Subject(Subject_index).Moment.Sagittal.Knee.left = [object.Subject(Subject_index).Moment.Sagittal.Knee.left, object.Data(i).MomentFit.left.cycle(j).data(k).parameter(1,:)'];
                 object.Subject(Subject_index).Moment.Frontal.Knee.left = [object.Subject(Subject_index).Moment.Frontal.Knee.left, object.Data(i).MomentFit.left.cycle(j).data(k).parameter(2,:)'];
-                object.Subject(Subject_index).Moment.Transverse.Knee.left = [object.Subject(Subject_index).Moment.Transverse.Knee.left, object.Data(i).MomentFit.left.cycle(j).data(k).parameter(3,:)];
+                object.Subject(Subject_index).Moment.Transverse.Knee.left = [object.Subject(Subject_index).Moment.Transverse.Knee.left, object.Data(i).MomentFit.left.cycle(j).data(k).parameter(3,:)'];
             elseif strncmp(object.Data(i).MomentFit.left.cycle(j).data(k).name,'LAnkle',4)
                 % Ankle
                 object.Subject(Subject_index).Moment.Sagittal.Ankle.left = [object.Subject(Subject_index).Moment.Sagittal.Ankle.left, object.Data(i).MomentFit.left.cycle(j).data(k).parameter(1,:)'];
@@ -31,11 +31,11 @@ if isfield(object.Data(i).MomentFit,'right')
                 object.Subject(Subject_index).Moment.Sagittal.Hip.right = [object.Subject(Subject_index).Moment.Sagittal.Hip.right object.Data(i).MomentFit.right.cycle(j).data(k).parameter(1,:)'];
                 object.Subject(Subject_index).Moment.Frontal.Hip.right = [object.Subject(Subject_index).Moment.Frontal.Hip.right object.Data(i).MomentFit.right.cycle(j).data(k).parameter(2,:)'];
                 object.Subject(Subject_index).Moment.Transverse.Hip.right = [object.Subject(Subject_index).Moment.Transverse.Hip.right object.Data(i).MomentFit.right.cycle(j).data(k).parameter(3,:)'];  
-            elseif strncmp(object.Data(i).MomentFit.right.cycle(j).data(k).name,'Rnee',4)
+            elseif strncmp(object.Data(i).MomentFit.right.cycle(j).data(k).name,'RKnee',4)
                 % Knee
-                object.Subject(Subject_index).Moment.Sagittal.Knee.right = [object.Subject(Subject_index).Moment.Sagittal.Knee.right object.Data(i).MomentFit.right.cycle(j).data(k).parameter(1,:)'];
-                object.Subject(Subject_index).Moment.Frontal.Knee.right = [object.Subject(Subject_index).Moment.Frontal.Knee.right object.Data(i).MomentFit.right.cycle(j).data(k).parameter(2,:)'];
-                object.Subject(Subject_index).Moment.Transverse.Knee.right = [object.Subject(Subject_index).Moment.Transverse.Knee.right object.Data(i).MomentFit.right.cycle(j).data(k).parameter(3,:)'];
+                object.Subject(Subject_index).Moment.Sagittal.Knee.right = [object.Subject(Subject_index).Moment.Sagittal.Knee.right, object.Data(i).MomentFit.right.cycle(j).data(k).parameter(1,:)'];
+                object.Subject(Subject_index).Moment.Frontal.Knee.right = [object.Subject(Subject_index).Moment.Frontal.Knee.right, object.Data(i).MomentFit.right.cycle(j).data(k).parameter(2,:)'];
+                object.Subject(Subject_index).Moment.Transverse.Knee.right = [object.Subject(Subject_index).Moment.Transverse.Knee.right, object.Data(i).MomentFit.right.cycle(j).data(k).parameter(3,:)'];
             elseif strncmp(object.Data(i).MomentFit.right.cycle(j).data(k).name,'RAnkle',4)
                 % Ankle
                 object.Subject(Subject_index).Moment.Sagittal.Ankle.right = [object.Subject(Subject_index).Moment.Sagittal.Ankle.right object.Data(i).MomentFit.right.cycle(j).data(k).parameter(1,:)'];

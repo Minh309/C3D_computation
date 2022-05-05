@@ -172,7 +172,7 @@ A_transverse.Knee.Summary.Global_min = min([A_transverse.Knee.left,A_transverse.
 
 % Ankle
     %Left
-A_sagittal.Hip.Summary.Left_mean = mean(A_sagittal.Ankle.left,2);
+A_sagittal.Ankle.Summary.Left_mean = mean(A_sagittal.Ankle.left,2);
 A_sagittal.Ankle.Summary.Left_sd = std(A_sagittal.Ankle.left,0,2);
 A_sagittal.Ankle.Summary.Left_max = max(A_sagittal.Ankle.left,[],2);
 A_sagittal.Ankle.Summary.Left_min = min(A_sagittal.Ankle.left,[],2);
@@ -345,7 +345,7 @@ M_transverse.Knee.Summary.Global_min = min([M_transverse.Knee.left,M_transverse.
 
 % Ankle
     %Left
-M_sagittal.Hip.Summary.Left_mean = mean(M_sagittal.Ankle.left,2);
+M_sagittal.Ankle.Summary.Left_mean = mean(M_sagittal.Ankle.left,2);
 M_sagittal.Ankle.Summary.Left_sd = std(M_sagittal.Ankle.left,0,2);
 M_sagittal.Ankle.Summary.Left_max = max(M_sagittal.Ankle.left,[],2);
 M_sagittal.Ankle.Summary.Left_min = min(M_sagittal.Ankle.left,[],2);
