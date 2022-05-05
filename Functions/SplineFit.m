@@ -1,5 +1,5 @@
 %% Script for Spline Interpolaration of the Angular, Moment & Power Data
-function [AngleFit,MomentFit,PowerFit] = SplineFit(object,Files,AngleFit,MomentFit,PowerFit,i,LStart,LEnd,nLcyc,RStart,REnd,nRcyc)
+function [AngleFit,MomentFit,PowerFit,WorkFit] = SplineFit(object,Files,AngleFit,MomentFit,PowerFit,WorkFit,i,LStart,LEnd,nLcyc,RStart,REnd,nRcyc)
 %% Left Side
 Angle_indexL = 0;
 Moment_indexL = 0;
@@ -60,6 +60,32 @@ for cL = 1 : nLcyc %Loop over all left cycles
                     name = Files(i).Data(3).data(l).name;
                     PowerFit.left.cycle(Moment_indexL).data(indx).name = name;
                 end
+                
+                % Work calculation
+                pospower = PowerFit.left.cycle(Moment_indexL).data(indx).parameter(3,:); %only transverse plane
+                negpower = PowerFit.left.cycle(Moment_indexL).data(indx).parameter(3,:); %only transverse plane
+                for t=1:length(pospower)
+                    if pospower(t)<0
+                        pospower(t)=0;
+                    end
+                end
+                for t=1:length(negpower)
+                    if negpower(t)>0
+                        negpower(t)=0;
+                    end
+                end
+                poswork = sum(pospower)*(LEnd(cL)-LStart(cL))/100/(100-1);
+                negwork = sum(negpower)*(LEnd(cL)-LStart(cL))/100/(100-1);
+                name = PowerFit.left.cycle(Moment_indexL).data(indx).name{1};
+                for k = 1:length(name)
+                    if name(k)=='P'
+                        name(k:k+4)='Work_';
+                        break
+                    end
+                end
+                WorkFit.left.cycle(Moment_indexL).data(indx).name = name;
+                WorkFit.left.cycle(Moment_indexL).data(indx).Positive = poswork;
+                WorkFit.left.cycle(Moment_indexL).data(indx).Negative = negwork;
                 indx = indx + 1;
             end
         end
@@ -121,6 +147,30 @@ for cR = 1 : nRcyc %Loop over all right cycles
                     name = Files(i).Data(3).data(l).name;
                     PowerFit.right.cycle(Moment_indexR).data(indx).name = name;
                 end
+                % Work calculation
+                pospower = PowerFit.right.cycle(Moment_indexR).data(indx).parameter(3,:); %only transverse plane
+                negpower = PowerFit.right.cycle(Moment_indexR).data(indx).parameter(3,:); %only transverse plane
+                for t=1:length(pospower)
+                    if pospower(t)<0
+                        pospower(t)=0;
+                    end
+                end
+                for t=1:length(negpower)
+                    if negpower(t)>0
+                        negpower(t)=0;
+                    end
+                end
+                poswork = sum(pospower)*(LEnd(cL)-LStart(cL))/100/(100-1);
+                negwork = sum(negpower)*(LEnd(cL)-LStart(cL))/100/(100-1);
+                name = PowerFit.right.cycle(Moment_indexR).data(indx).name{1};
+                for k =1:length(name)
+                    if name(k)=='P'
+                        name(k:k+4)='Work_';
+                    end
+                end
+                WorkFit.right.cycle(Moment_indexR).data(indx).name = name;
+                WorkFit.right.cycle(Moment_indexR).data(indx).Positive = poswork;
+                WorkFit.right.cycle(Moment_indexR).data(indx).Negative = negwork;
                 indx = indx + 1;
             end
         end

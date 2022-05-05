@@ -320,133 +320,133 @@ data_F = object.Subject(i).Angle.Frontal;
 data_S = object.Subject(i).Angle.Sagittal;
 data_T = object.Subject(i).Angle.Transverse;
 
-for j = 1:length(data_F.Thorax.left)
+for j = 1:length(data_F.Thorax.left(1,:))
         %Thorax
     subplot(5,3,1)
     grid on
-    plot(x_axis,data_F.Thorax.left(j),'color',red);
+    plot(x_axis,data_F.Thorax.left(:,j),'color',red);
     hold on
     subplot(5,3,2)
     grid on
-    plot(x_axis,data_S.Thorax.left(j),'color',red);
+    plot(x_axis,data_S.Thorax.left(:,j),'color',red);
     hold on
     subplot(5,3,3)
     grid on
-    plot(x_axis,data_T.Thorax.left(j),'color',red);
+    plot(x_axis,data_T.Thorax.left(:,j),'color',red);
     hold on
         %Pelvis
     subplot(5,3,4)
     grid on
-    plot(x_axis,data_F.Pelvis.left(j),'color',red);
+    plot(x_axis,data_F.Pelvis.left(:,j),'color',red);
     hold on
     subplot(5,3,5)
     grid on
-    plot(x_axis,data_S.Pelvis.left(j),'color',red);
+    plot(x_axis,data_S.Pelvis.left(:,j),'color',red);
     hold on
     subplot(5,3,6)
     grid on
-    plot(x_axis,data_T.Pelvis.left(j),'color',red);
+    plot(x_axis,data_T.Pelvis.left(:,j),'color',red);
     hold on
         %Hip
     subplot(5,3,7)
     grid on
-    plot(x_axis,data_F.Hip.left(j),'color',red);
+    plot(x_axis,data_F.Hip.left(:,j),'color',red);
     hold on
     subplot(5,3,8)
     grid on
-    plot(x_axis,data_S.Hip.left(j),'color',red);
+    plot(x_axis,data_S.Hip.left(:,j),'color',red);
     hold on
     subplot(5,3,9)
     grid on
-    plot(x_axis,data_T.Hip.left(j),'color',red);
+    plot(x_axis,data_T.Hip.left(:,j),'color',red);
     hold on
         %Knee
     subplot(5,3,10)
     grid on
-    plot(x_axis,data_F.Knee.left(j),'color',red);
+    plot(x_axis,data_F.Knee.left(:,j),'color',red);
     hold on
     subplot(5,3,11)
     grid on
-    plot(x_axis,data_S.Knee.left(j),'color',red);
+    plot(x_axis,data_S.Knee.left(:,j),'color',red);
     hold on
     subplot(5,3,12)
     grid on
-    plot(x_axis,data_T.Knee.left(j),'color',red);
+    plot(x_axis,data_T.Knee.left(:,j),'color',red);
     hold on
         %Ankle
     subplot(5,3,14)
     grid on
-    plot(x_axis,data_S.Ankle.left(j),'color',red);
+    plot(x_axis,data_S.Ankle.left(:,j),'color',red);
     hold on
         %Foot
     subplot(5,3,15)
     grid on
-    plot(x_axis,data_T.Foot.left(j),'color',red);
+    plot(x_axis,data_T.Foot.left(:,j),'color',red);
     hold on
 end
 
-for j = 1:length(data_F.Thorax.right)
+for j = 1:length(data_F.Thorax.right(1,:))
         %Thorax
     subplot(5,3,1)
     grid on
-    plot(x_axis,data_F.Thorax.right(j),'color',red);
+    plot(x_axis,data_F.Thorax.right(:,j),'color',green);
     hold on
     subplot(5,3,2)
     grid on
-    plot(x_axis,data_S.Thorax.right(j),'color',red);
+    plot(x_axis,data_S.Thorax.right(:,j),'color',green);
     hold on
     subplot(5,3,3)
     grid on
-    plot(x_axis,data_T.Thorax.right(j),'color',red);
+    plot(x_axis,data_T.Thorax.right(:,j),'color',green);
     hold on
         %Pelvis
     subplot(5,3,4)
     grid on
-    plot(x_axis,data_F.Pelvis.right(j),'color',red);
+    plot(x_axis,data_F.Pelvis.right(:,j),'color',green);
     hold on
     subplot(5,3,5)
     grid on
-    plot(x_axis,data_S.Pelvis.right(j),'color',red);
+    plot(x_axis,data_S.Pelvis.right(:,j),'color',green);
     hold on
     subplot(5,3,6)
     grid on
-    plot(x_axis,data_T.Pelvis.right(j),'color',red);
+    plot(x_axis,data_T.Pelvis.right(:,j),'color',green);
     hold on
         %Hip
     subplot(5,3,7)
     grid on
-    plot(x_axis,data_F.Hip.right(j),'color',red);
+    plot(x_axis,data_F.Hip.right(:,j),'color',green);
     hold on
     subplot(5,3,8)
     grid on
-    plot(x_axis,data_S.Hip.right(j),'color',red);
+    plot(x_axis,data_S.Hip.right(:,j),'color',green);
     hold on
     subplot(5,3,9)
     grid on
-    plot(x_axis,data_T.Hip.right(j),'color',red);
+    plot(x_axis,data_T.Hip.right(:,j),'color',green);
     hold on
         %Knee
     subplot(5,3,10)
     grid on
-    plot(x_axis,data_F.Knee.right(j),'color',red);
+    plot(x_axis,data_F.Knee.right(:,j),'color',green);
     hold on
     subplot(5,3,11)
     grid on
-    plot(x_axis,data_S.Knee.right(j),'color',red);
+    plot(x_axis,data_S.Knee.right(:,j),'color',green);
     hold on
     subplot(5,3,12)
     grid on
-    plot(x_axis,data_T.Knee.right(j),'color',red);
+    plot(x_axis,data_T.Knee.right(:,j),'color',green);
     hold on
         %Ankle
     subplot(5,3,14)
     grid on
-    plot(x_axis,data_S.Ankle.right(j),'color',red);
+    plot(x_axis,data_S.Ankle.right(:,j),'color',green);
     hold on
         %Foot
     subplot(5,3,15)
     grid on
-    plot(x_axis,data_T.Foot.right(j),'color',red);
+    plot(x_axis,data_T.Foot.right(:,j),'color',green);
     hold on
 end
     
