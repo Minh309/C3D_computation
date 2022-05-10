@@ -152,8 +152,8 @@ for i = 1 : n
     c_i = C(:,i); % colum vector for the i-th gait cycle in the control group
     CG_Dataset.GDI_control.GDI(i) = log(norm(c_i - CG_Dataset.GDI_control.c));
 end
-CG_Dataset.GDI_control = [];
-CG_Dataset.GDI_control.mean = mean (CG_Dataset.GDI_control.GDI());
-CG_Dataset.GDI_control.sd = std(CG_Dataset.GDI_control.GDI());
+
+CG_Dataset.GDI_control.mean = mean (CG_Dataset.GDI_control.GDI);
+CG_Dataset.GDI_control.sd = std(CG_Dataset.GDI_control.GDI);
 
 end
