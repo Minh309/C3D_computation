@@ -2,7 +2,7 @@
 % calculation of the GDI parameters for the controll group.
 
 % INPUT:
-% CG_Dataset  :   dataset with the kinematic angles of the control group.
+% object.Subject(i)  :   dataset with the kinematic angles of the control group.
 %                  Created using the MoveAbilityLab.m structure.
 
 % OUTPUT:
@@ -10,14 +10,14 @@
 %                  of the c vectros for each gaitcycle counted in the
 %                  control group.
 
-function [CG_Dataset] = GDI_control_calculation(CG_Dataset)
+function [] = GDI_control_calculation(object, i)
 
 %GC_Dataset is already composed by vectors with 100 elemets, we decide to
 %sample with 1% increment.
 
 %% matrix G creation
 G = [];
-data = CG_Dataset.Angle;
+data = object.Subject(i).Angle;
 for i = 1:length(data.Sagittal.Pelvis.left(1,:))
         % Pelvis
     Lpel_tilt = data.Sagittal.Pelvis.left(:,i);
@@ -144,16 +144,16 @@ for i = 1 : n
     end
 end
 
-CG_Dataset.GDI_control.c = mean(C,2);
+object.Subject(i).GDI_control.c = mean(C,2);
 
 %% Raw GDI for the control group
  
 for i = 1 : n
     c_i = C(:,i); % colum vector for the i-th gait cycle in the control group
-    CG_Dataset.GDI_control.GDI(i) = log(norm(c_i - CG_Dataset.GDI_control.c));
+    object.Subject(i).GDI_control.GDI(i) = log(norm(c_i - object.Subject(i).GDI_control.c));
 end
 
-CG_Dataset.GDI_control.mean = mean (CG_Dataset.GDI_control.GDI);
-CG_Dataset.GDI_control.sd = std(CG_Dataset.GDI_control.GDI);
+object.Subject(i).GDI_control.mean = mean (object.Subject(i).GDI_control.GDI);
+object.Subject(i).GDI_control.sd = std(object.Subject(i).GDI_control.GDI);
 
 end
