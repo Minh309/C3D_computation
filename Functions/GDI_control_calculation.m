@@ -18,21 +18,21 @@ function [] = GDI_control_calculation(object, i)
 %% matrix G creation
 G = [];
 data = object.Subject(i).Angle;
-for i = 1:length(data.Sagittal.Pelvis.left(1,:))
+for j = 1:length(data.Sagittal.Pelvis.left(1,:))
         % Pelvis
-    Lpel_tilt = data.Sagittal.Pelvis.left(:,i);
-    Lpel_obl = data.Frontal.Pelvis.left(:,i);
-    Lpel_rot = data.Transverse.Pelvis.left(:,i);
+    Lpel_tilt = data.Sagittal.Pelvis.left(:,j);
+    Lpel_obl = data.Frontal.Pelvis.left(:,j);
+    Lpel_rot = data.Transverse.Pelvis.left(:,j);
         %Hip
-    Lhip_flex = data.Sagittal.Hip.left(:,i);
-    Lhip_abd = data.Frontal.Hip.left(:,i);
-    Lhip_rot = data.Transverse.Hip.left(:,i);
+    Lhip_flex = data.Sagittal.Hip.left(:,j);
+    Lhip_abd = data.Frontal.Hip.left(:,j);
+    Lhip_rot = data.Transverse.Hip.left(:,j);
         %Knee
-    Lknee_flex = data.Sagittal.Knee.left(:,i);
+    Lknee_flex = data.Sagittal.Knee.left(:,j);
         %Ankle
-    Lankle_dors = data.Sagittal.Ankle.left(:,i);
+    Lankle_dors = data.Sagittal.Ankle.left(:,j);
         %Foot progression
-    Lfoot_prog = data.Transverse.Foot.left(:,i);
+    Lfoot_prog = data.Transverse.Foot.left(:,j);
     
         % ceation of the matrix G
     Lg = [Lpel_tilt; Lpel_obl; Lpel_rot; Lhip_flex; Lhip_abd; Lhip_rot; Lknee_flex; Lankle_dors; Lfoot_prog];
@@ -40,21 +40,21 @@ for i = 1:length(data.Sagittal.Pelvis.left(1,:))
 end
 
 
-for i = 1:length(data.Sagittal.Pelvis.right(1,:))
+for j = 1:length(data.Sagittal.Pelvis.right(1,:))
         % Pelvis
-    Rpel_tilt = data.Sagittal.Pelvis.right(:,i);
-    Rpel_obl = data.Frontal.Pelvis.right(:,i);
-    Rpel_rot = data.Transverse.Pelvis.right(:,i);
+    Rpel_tilt = data.Sagittal.Pelvis.right(:,j);
+    Rpel_obl = data.Frontal.Pelvis.right(:,j);
+    Rpel_rot = data.Transverse.Pelvis.right(:,j);
         %Hip
-    Rhip_flex = data.Sagittal.Hip.right(:,i);
-    Rhip_abd = data.Frontal.Hip.right(:,i);
-    Rhip_rot = data.Transverse.Hip.right(:,i);
+    Rhip_flex = data.Sagittal.Hip.right(:,j);
+    Rhip_abd = data.Frontal.Hip.right(:,j);
+    Rhip_rot = data.Transverse.Hip.right(:,j);
         %Knee
-    Rknee_flex = data.Sagittal.Knee.right(:,i);
+    Rknee_flex = data.Sagittal.Knee.right(:,j);
         %Ankle
-    Rankle_dors = data.Sagittal.Ankle.right(:,i);
+    Rankle_dors = data.Sagittal.Ankle.right(:,j);
         %Foot progression
-    Rfoot_prog = data.Transverse.Foot.right(:,i);
+    Rfoot_prog = data.Transverse.Foot.right(:,j);
     
         % ceation of the matrix G       
     Rg = [Rpel_tilt; Rpel_obl; Rpel_rot; Rhip_flex; Rhip_abd; Rhip_rot; Rknee_flex; Rankle_dors; Rfoot_prog];
@@ -103,8 +103,8 @@ end
 Phy = []; %matrix of the fithfulness of the reconstructed vector, each row is a different "m" while the colums identify the gait cycle used
 
 
-for i = 1 : n
-    g = G(:,i);
+for j = 1 : n
+    g = G(:,j);
     phy_g = [];
     for m = 1:m_max
         g_mk = [];
@@ -135,12 +135,12 @@ end
 
 C = []; %is the matix containing all the featur components column vectors, one for each controll gait cycle.
 
-for i = 1 : n
-    g = G(:,i);
+for j = 1 : n
+    g = G(:,j);
     for k = 1:m_crit
         f_k = F(:,k);
         c_k = dot(g,f_k);
-        C(k,i) = c_k;
+        C(k,j) = c_k;
     end
 end
 
@@ -148,9 +148,9 @@ object.Subject(i).GDI_control.c = mean(C,2);
 
 %% Raw GDI for the control group
  
-for i = 1 : n
-    c_i = C(:,i); % colum vector for the i-th gait cycle in the control group
-    object.Subject(i).GDI_control.GDI(i) = log(norm(c_i - object.Subject(i).GDI_control.c));
+for j = 1 : n
+    c_i = C(:,j); % colum vector for the i-th gait cycle in the control group
+    object.Subject(i).GDI_control.GDI(j) = log(norm(c_i - object.Subject(i).GDI_control.c));
 end
 
 object.Subject(i).GDI_control.mean = mean (object.Subject(i).GDI_control.GDI);

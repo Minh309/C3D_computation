@@ -27,7 +27,7 @@ Hip_flex = [data.Sagittal.Hip.left, data.Sagittal.Hip.right];
 Hip_abd = [data.Frontal.Hip.left, data.Frontal.Hip.right];
 Hip_rot = [data.Transverse.Hip.left, data.Transverse.Hip.right];
 Knee_flex = [data.Sagittal.Knee.left, data.Sagittal.Knee.right];
-Ankle_dors = [data.Sagittal.Ankle.left, data.Sagittal.Ankle.righ];
+Ankle_dors = [data.Sagittal.Ankle.left, data.Sagittal.Ankle.right];
 Foot_prog = [data.Transverse.Foot.left,data.Transverse.Foot.right];
 
 for j = 1:length(Pelvis_tilt(1,:))

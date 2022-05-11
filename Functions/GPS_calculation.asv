@@ -89,9 +89,8 @@ GPS.RFoot_prog_sd = std(rmsRFoot_prog);
 GPS.LGait = mean(rmsLGait);
 GPS.LGait_sd = mean(rmsLGait);
 GPS.RGait = mean(rmsRGait);
-GPS.RGait_sd = mean(rmsRGait);
+
 GPS.Gait = mean(rmsGait);
-GPS.Gait_sd = mean(rmsGait);
 
 %saving in the object
 object.Subject(i).GPS = GPS;
@@ -111,9 +110,9 @@ cgroup = [control.diff.Pelvis_tilt,  0, 0; control.diff.Pelvis_obl,  0, 0; contr
     control.diff.Knee_flex, control.diff.Knee_flex, 0; control.diff.Ankle_dors, control.diff.Ankle_dors, 0; control.diff.Foot_prog, control.diff.Foot_prog, 0;...
     control.diff.Gait, control.diff.Gait, control.diff.Gait];
 
-sd = [GPS.Pelvis_tilt_sd,  0, 0;  GPS.Pelvis_obl_sd, 0, 0;  GPS.Pelvis_rot_sd, 0, 0; ...
-    GPS.LHip_flex_sd, GPS.RHip_flex_sd, 0; GPS.LHip_abd_sd, GPS.RHip_abd_sd, 0; GPS.LHip_rot_sd, GPS.RHip_rot_sd, 0; ...
-    GPS.LKnee_flex_sd, GPS.RKnee_flex_sd 0;, GPS.LAnkle_dors_sd, GPS.RAnkle_dors_sd, 0; GPS.LFoot_prog_sd, GPS.RFoot_prog_sd, 0;...
+sd = [GPS.Pelvis_tilt_sd, GPS.Pelvis_obl_sd, GPS.Pelvis_rot_sd,...
+    GPS.LHip_flex_sd, GPS.RHip_flex_sd, GPS.LHip_abd_sd, GPS.RHip_abd_sd, GPS.LHip_rot_sd, GPS.RHip_rot_sd, ...
+    GPS.LKnee_flex_sd, GPS.RKnee_flex_sd, GPS.LAnkle_dors_sd, GPS.RAnkle_dors_sd, GPS.LFoot_prog_sd, GPS.RFoot_prog_sd,...
     GPS.LGait_sd, GPS.RGait_sd, GPS.Gait_sd];
 
 % Plotting
@@ -132,8 +131,7 @@ b(2).FaceColor = green_shadow;
 b(3).FaceColor = grey_shadow;
 hold on
 %SD bars
-x = [1:30];
-er = errorbar(x,subject, sd, sd);    
+er = errorbar(Tags,subject, sd, sd);    
 er.Color = [0 0 0];                            
 er.LineStyle = 'none';
 hold on
