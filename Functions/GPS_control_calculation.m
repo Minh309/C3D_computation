@@ -31,19 +31,19 @@ Ankle_dors = [data.Sagittal.Ankle.left, data.Sagittal.Ankle.right];
 Foot_prog = [data.Transverse.Foot.left,data.Transverse.Foot.right];
 
 for j = 1:length(Pelvis_tilt(1,:))
-    rmsPel_tilt(j) = rms(Pelvis_tilt(j)- data.Sagittal.Pelvis.Summary.Global_mean);
-    rmsPel_obl(j) = rms(Pelvis_obl(j) - data.Frontal.Pelvis.Summary.Global_mean);
-    rmsPel_rot(j) = rms(Pelvis_rot(j) - data.Transverse.Pelvis.Summary.Global_mean);
+    rmsPel_tilt(j) = rms(Pelvis_tilt(:,j)- data.Sagittal.Pelvis.Summary.Global_mean);
+    rmsPel_obl(j) = rms(Pelvis_obl(:,j)-data.Frontal.Pelvis.Summary.Global_mean);
+    rmsPel_rot(j) = rms(Pelvis_rot(:,j)-data.Transverse.Pelvis.Summary.Global_mean);
         %Hip
-    rmsHip_flex(j) = rms(Hip_flex(j) - data.Sagittal.Hip.Summary.Global_mean);
-    rmsHip_abd(j) = rms(Hip_abd(j) - data.Frontal.Hip.Summary.Global_mean);
-    rmsHip_rot(j) = rms(Hip_rot(j) - data.Transverse.Hip.Summary.Global_mean);
+    rmsHip_flex(j) = rms(Hip_flex(:,j)-data.Sagittal.Hip.Summary.Global_mean);
+    rmsHip_abd(j) = rms(Hip_abd(:,j)-data.Frontal.Hip.Summary.Global_mean);
+    rmsHip_rot(j) = rms(Hip_rot(:,j)-data.Transverse.Hip.Summary.Global_mean);
         %Knee
-    rmsKnee_flex(j) = rms(Knee_flex(j) - data.Sagittal.Knee.Summary.Global_mean);
+    rmsKnee_flex(j) = rms(Knee_flex(:,j)-data.Sagittal.Knee.Summary.Global_mean);
         %Ankle
-    rmsAnkle_dors(j) = rms(Ankle_dors(j) - data.Sagittal.Ankle.Summary.Global_mean);
+    rmsAnkle_dors(j) = rms(Ankle_dors(:,j)-data.Sagittal.Ankle.Summary.Global_mean);
         %Foot
-    rmsFoot_prog(j) = rms(Foot_prog(j) - data.Transverse.Foot.Summary.Global_mean);
+    rmsFoot_prog(j) = rms(Foot_prog(:,j)-data.Transverse.Foot.Summary.Global_mean);
         %Global - Gait
     Gait = [rmsPel_tilt, rmsPel_obl, rmsPel_rot, rmsHip_flex, rmsHip_abd, rmsHip_rot, rmsKnee_flex, rmsAnkle_dors, rmsFoot_prog];
     rmsGait (j) = mean(Gait,2);

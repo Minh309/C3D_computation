@@ -256,7 +256,7 @@ object.Subject(i).Angle.Sagittal = A_sagittal;
 object.Subject(i).Angle.Frontal = A_frontal;
 object.Subject(i).Angle.Transverse = A_transverse;
 
-%% Moment_summary
+%% Moment_summary 
 M_sagittal = object.Subject(i).Moment.Sagittal;
 M_frontal = object.Subject(i).Moment.Frontal;
 M_transverse = object.Subject(i).Moment.Transverse;

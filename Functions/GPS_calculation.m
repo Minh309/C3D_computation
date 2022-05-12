@@ -26,7 +26,11 @@ for j = 1:length(data.Sagittal.Pelvis.left(1,:))
 end 
 
 %% Right RMS for single cycles
-for j = 1:length(data.Sagittal.Pelvis.left(1,:))
+for j = 1:length(data.Sagittal.Pelvis.right(1,:))
+    %Pelvis
+    rmsPel_tilt(j) = rms(data.Sagittal.Pelvis.right(:,j)- control.Mean.Pel_tilt);
+    rmsPel_obl(j) = rms(data.Frontal.Pelvis.right(:,j) - control.Mean.Pel_obl);
+    rmsPel_rot(j) = rms(data.Transverse.Pelvis.right(:,j) - control.Mean.Pel_rot);
         %Hip
     rmsRHip_flex(j) = rms(data.Sagittal.Hip.right(:,j) - control.Mean.Hip_flex);
     rmsRHip_abd(j) = rms(data.Frontal.Hip.right(:,j) - control.Mean.Hip_abd);
@@ -39,7 +43,7 @@ for j = 1:length(data.Sagittal.Pelvis.left(1,:))
     rmsRFoot_prog(j) = rms(data.Transverse.Foot.right(:,j) - control.Mean.Foot_prog);
         %Global - Gait
     RGait = [rmsPel_tilt, rmsPel_obl, rmsPel_rot, rmsLHip_flex, rmsLHip_abd, rmsLHip_rot, rmsLKnee_flex, rmsLAnkle_dors, rmsLFoot_prog];
-    rmsRGait (j) = mean(LGait);
+    rmsRGait (j) = mean(RGait);
 end
 
 %% Global Gait profile
@@ -87,11 +91,11 @@ GPS.RFoot_prog = mean(rmsRFoot_prog);
 GPS.RFoot_prog_sd = std(rmsRFoot_prog);
     %Global GPS
 GPS.LGait = mean(rmsLGait);
-GPS.LGait_sd = mean(rmsLGait);
+GPS.LGait_sd = std(rmsLGait);
 GPS.RGait = mean(rmsRGait);
-GPS.RGait_sd = mean(rmsRGait);
+GPS.RGait_sd = std(rmsRGait);
 GPS.Gait = mean(rmsGait);
-GPS.Gait_sd = mean(rmsGait);
+GPS.Gait_sd = std(rmsGait);
 
 %saving in the object
 object.Subject(i).GPS = GPS;
@@ -113,7 +117,7 @@ cgroup = [control.diff.Pelvis_tilt,  0, 0; control.diff.Pelvis_obl,  0, 0; contr
 
 sd = [GPS.Pelvis_tilt_sd,  0, 0;  GPS.Pelvis_obl_sd, 0, 0;  GPS.Pelvis_rot_sd, 0, 0; ...
     GPS.LHip_flex_sd, GPS.RHip_flex_sd, 0; GPS.LHip_abd_sd, GPS.RHip_abd_sd, 0; GPS.LHip_rot_sd, GPS.RHip_rot_sd, 0; ...
-    GPS.LKnee_flex_sd, GPS.RKnee_flex_sd 0;, GPS.LAnkle_dors_sd, GPS.RAnkle_dors_sd, 0; GPS.LFoot_prog_sd, GPS.RFoot_prog_sd, 0;...
+    GPS.LKnee_flex_sd, GPS.RKnee_flex_sd 0; GPS.LAnkle_dors_sd, GPS.RAnkle_dors_sd, 0; GPS.LFoot_prog_sd, GPS.RFoot_prog_sd, 0;...
     GPS.LGait_sd, GPS.RGait_sd, GPS.Gait_sd];
 
 % Plotting
@@ -122,21 +126,34 @@ red_shadow = [0.9020    0.7294    0.7608];
 green = [0.4667    0.6745    0.1882];
 green_shadow = [0.7686    0.8588    0.6431];
 grey_shadow = [0.8510    0.8510    0.8510];
-dark_grey = [0.5020    0.5020    0.5020];
+dark_grey = [0.4020    0.4020    0.4020];
 
 sub = length(object.Subject);
-figure(i+sub*4)
-b = bar(Tags,subject);
+f = figure(i+sub*4);
+f.Position = [10  -20  1000  500];
+b = bar(Tags,subject, 'grouped');
 b(1).FaceColor = red_shadow;
 b(2).FaceColor = green_shadow;
 b(3).FaceColor = grey_shadow;
+ylabel('RMS difference [deg]');
+ylim([0 30]);
+set(gca, 'YGrid', 'on', 'XGrid', 'off')
+hold on
+
+%Reference ranges
+bar(cgroup,'FaceColor', dark_grey, 'FaceAlpha',.7);
+
 hold on
 %SD bars
-x = [1:30];
-er = errorbar(x,subject, sd, sd);    
-er.Color = [0 0 0];                            
-er.LineStyle = 'none';
-hold on
-%Reference ranges
-bar(cgroup,'FaceColor', dark_grey)
+[ngroups,nbars] = size(subject);
+% Get the x coordinate of the bars
+x = nan(nbars, ngroups);
+for i = 1:nbars
+    x(i,:) = b(i).XEndPoints;
+end
+% Plot the errorbars
+errorbar(x',subject,sd,'k','linestyle','none');
+%legend('SD');
 
+%legend('Control');
+legend('Left', 'Right', 'Global', 'Control');

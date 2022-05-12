@@ -8,13 +8,13 @@ Labels = {'Trunk Obliquity' [0 100 -10 10] 'Ext      deg      Flex';
           'Pelvic Tilt' [0 100 -30 30] 'Post      deg      Ant';
           'Pelvic Rotation' [0 100 -30 30] 'Ext      deg      Int';
           'Hip Adduction' [0 100 -20 20] 'Abd      deg      Add';
-          'Hip Flxion' [0 100 -20 60] 'Ext      deg      Flex';
+          'Hip Flexion' [0 100 -20 60] 'Ext      deg      Flex';
           'Hip Rotation' [0 100 -20 40] 'Ext      deg      Int';
-          'Knee Adduction' [0 100 -30 30] 'Abd      deg      Add';
-          'Knee Flxion' [0 100 -20 90] 'Ext      deg      Flex';
+          'Knee Varus/Valgus' [0 100 -30 30] 'Val      deg      Var';
+          'Knee Flexion' [0 100 -20 90] 'Ext      deg      Flex';
           'Knee Rotation' [0 100 -30 40] 'Ext      deg      Int';
           'Ankle Dorsiflexion' [0 100 -30 30] 'Plan      deg      Dors';
-          'Foot Progression' [0 100 -40 40] 'Ext      deg      Int'};    
+          'Foot Progression' [0 100 -40 40] 'Ext      deg      Int'};      
 x_axis = 1:100; %Set x-axis
 x = [x_axis,fliplr(x_axis)];
 %% Setting color palett
@@ -26,7 +26,7 @@ grey_shadow = [0.8510    0.8510    0.8510];
 %% Control Group reference area
 sub = length(object.Subject);
 f = figure(i+sub);
-f.Position(3:4) = [750  1000];
+f.Position = [10 -20 750  1000];
 data_F = CG_Dataset.Angle.Frontal;
 data_S = CG_Dataset.Angle.Sagittal;
 data_T = CG_Dataset.Angle.Transverse;
@@ -330,7 +330,7 @@ subplot(5,3,idx)
 up_lim = data_F.Thorax.Summary.Left_max;
 low_lim = data_F.Thorax.Summary.Left_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, red_shadow)
+fill (x, between, red_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -342,7 +342,7 @@ subplot(5,3,idx)
 up_lim =data_S.Thorax.Summary.Left_max;
 low_lim = data_S.Thorax.Summary.Left_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, red_shadow)
+fill (x, between, red_shadow,'FaceAlpha',.5)
 grid on
 hold on
 plot(x_axis,data_S.Thorax.Summary.Left_mean,'color',red);
@@ -353,7 +353,7 @@ subplot(5,3,idx)
 up_lim = data_T.Thorax.Summary.Left_max;
 low_lim = data_T.Thorax.Summary.Left_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, red_shadow)
+fill (x, between, red_shadow,'FaceAlpha',.5)
 grid on
 hold on
 plot(x_axis,data_T.Thorax.Summary.Left_mean,'color',red);
@@ -366,7 +366,7 @@ subplot(5,3,idx)
 up_lim = data_F.Pelvis.Summary.Left_max;
 low_lim = data_F.Pelvis.Summary.Left_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, red_shadow)
+fill (x, between, red_shadow,'FaceAlpha',.5)
 grid on
 hold on
 plot(x_axis,data_F.Pelvis.Summary.Left_mean,'color',red);
@@ -377,7 +377,7 @@ subplot(5,3,idx)
 up_lim = data_S.Pelvis.Summary.Left_max;
 low_lim = data_S.Pelvis.Summary.Left_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, red_shadow)
+fill (x, between, red_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -389,7 +389,7 @@ subplot(5,3,idx)
 up_lim = data_T.Pelvis.Summary.Left_max;
 low_lim = data_T.Pelvis.Summary.Left_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, red_shadow)
+fill (x, between, red_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -404,7 +404,7 @@ subplot(5,3,idx)
 up_lim = data_F.Hip.Summary.Left_max;
 low_lim = data_F.Hip.Summary.Left_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, red_shadow)
+fill (x, between, red_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -417,7 +417,7 @@ subplot(5,3,idx)
 up_lim = data_S.Hip.Summary.Left_max;
 low_lim = data_S.Hip.Summary.Left_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, red_shadow)
+fill (x, between, red_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -431,7 +431,7 @@ subplot(5,3,idx)
 up_lim = data_T.Hip.Summary.Left_max;
 low_lim = data_T.Hip.Summary.Left_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, red_shadow)
+fill (x, between, red_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -446,7 +446,7 @@ subplot(5,3,idx)
 up_lim = data_F.Knee.Summary.Left_max;
 low_lim = data_F.Knee.Summary.Left_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, red_shadow)
+fill (x, between, red_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -459,7 +459,7 @@ subplot(5,3,idx)
 up_lim = data_S.Knee.Summary.Left_max;
 low_lim = data_S.Knee.Summary.Left_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, red_shadow)
+fill (x, between, red_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -472,7 +472,7 @@ subplot(5,3,idx)
 up_lim = data_T.Knee.Summary.Left_max;
 low_lim = data_T.Knee.Summary.Left_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, red_shadow)
+fill (x, between, red_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -487,7 +487,7 @@ subplot(5,3,idx+1)
 up_lim = data_S.Ankle.Summary.Left_max;
 low_lim = data_S.Ankle.Summary.Left_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, red_shadow)
+fill (x, between, red_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -502,7 +502,7 @@ subplot(5,3,idx+1)
 up_lim = data_T.Foot.Summary.Left_max;
 low_lim = data_T.Foot.Summary.Left_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, red_shadow)
+fill (x, between, red_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -524,7 +524,7 @@ subplot(5,3,idx)
 up_lim = data_F.Thorax.Summary.Right_max;
 low_lim = data_F.Thorax.Summary.Right_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, green_shadow)
+fill (x, between, green_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -536,7 +536,7 @@ subplot(5,3,idx)
 up_lim =data_S.Thorax.Summary.Right_max;
 low_lim = data_S.Thorax.Summary.Right_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, green_shadow)
+fill (x, between, green_shadow,'FaceAlpha',.5)
 grid on
 hold on
 plot(x_axis,data_S.Thorax.Summary.Right_mean,'color',green);
@@ -547,7 +547,7 @@ subplot(5,3,idx)
 up_lim = data_T.Thorax.Summary.Right_max;
 low_lim = data_T.Thorax.Summary.Right_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, green_shadow)
+fill (x, between, green_shadow,'FaceAlpha',.5)
 grid on
 hold on
 plot(x_axis,data_T.Thorax.Summary.Right_mean,'color',green);
@@ -560,7 +560,7 @@ subplot(5,3,idx)
 up_lim = data_F.Pelvis.Summary.Right_max;
 low_lim = data_F.Pelvis.Summary.Right_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, green_shadow)
+fill (x, between, green_shadow,'FaceAlpha',.5)
 grid on
 hold on
 plot(x_axis,data_F.Pelvis.Summary.Right_mean,'color',green);
@@ -571,7 +571,7 @@ subplot(5,3,idx)
 up_lim = data_S.Pelvis.Summary.Right_max;
 low_lim = data_S.Pelvis.Summary.Right_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, green_shadow)
+fill (x, between, green_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -583,7 +583,7 @@ subplot(5,3,idx)
 up_lim = data_T.Pelvis.Summary.Right_max;
 low_lim = data_T.Pelvis.Summary.Right_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, green_shadow)
+fill (x, between, green_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -598,7 +598,7 @@ subplot(5,3,idx)
 up_lim = data_F.Hip.Summary.Right_max;
 low_lim = data_F.Hip.Summary.Right_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, green_shadow)
+fill (x, between, green_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -611,7 +611,7 @@ subplot(5,3,idx)
 up_lim = data_S.Hip.Summary.Right_max;
 low_lim = data_S.Hip.Summary.Right_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, green_shadow)
+fill (x, between, green_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -625,7 +625,7 @@ subplot(5,3,idx)
 up_lim = data_T.Hip.Summary.Right_max;
 low_lim = data_T.Hip.Summary.Right_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, green_shadow)
+fill (x, between, green_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -640,7 +640,7 @@ subplot(5,3,idx)
 up_lim = data_F.Knee.Summary.Right_max;
 low_lim = data_F.Knee.Summary.Right_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, green_shadow)
+fill (x, between, green_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -653,7 +653,7 @@ subplot(5,3,idx)
 up_lim = data_S.Knee.Summary.Right_max;
 low_lim = data_S.Knee.Summary.Right_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, green_shadow)
+fill (x, between, green_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -666,7 +666,7 @@ subplot(5,3,idx)
 up_lim = data_T.Knee.Summary.Right_max;
 low_lim = data_T.Knee.Summary.Right_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, green_shadow)
+fill (x, between, green_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -681,7 +681,7 @@ subplot(5,3,idx+1)
 up_lim = data_S.Ankle.Summary.Right_max;
 low_lim = data_S.Ankle.Summary.Right_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, green_shadow)
+fill (x, between, green_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve
@@ -696,7 +696,7 @@ subplot(5,3,idx+1)
 up_lim = data_T.Foot.Summary.Right_max;
 low_lim = data_T.Foot.Summary.Right_min;
 between = [up_lim',fliplr(low_lim')];
-fill (x, between, green_shadow)
+fill (x, between, green_shadow,'FaceAlpha',.5)
 grid on
 hold on
 % Mean curve

@@ -1,16 +1,16 @@
 function [] = iSCI_MomentPowerPlot(object,i,CG_Dataset)
 %% Definition of Segments, X/Y Labels      
 % Labels = ['Parameter' [X axis limits Y axis limits], 'Unit']
-Labels = {'Hip Add/Abd Moment' [0 100 -1 1] 'Nm';
-          'Hip Flx/Ext Moment' [0 100 -2 2] 'Nm';
-          'Hip Int/Ext Moment' [0 100 -1.5 1.5] 'Nm';
-          'Hip Power' [0 100 -3 3] 'W';
-          'Knee Valg/Var Moment' [0 100 -1 1] 'Nm';
-          'Knee Flx/Ext Moment' [0 100 -1.5 1.5] 'Nm';
-          'Knee Int/Ext Moment' [0 100 -1.5 1.5] 'Nm';
-          'Knee Power' [0 100 -3 3] 'W';
-          'Ankle Dor/Pla Moment' [0 100 -1 2] 'Nm';
-          'Ankle Power' [0 100 -3 5] 'W'};   
+Labels = {'Hip Add/Abd Moment' [0 100 -1 1] 'Add      Nm/kg      Abd';
+          'Hip Flx/Ext Moment' [0 100 -2 2] 'Flex      Nm/kg      Ext';
+          'Hip Rotation Moment' [0 100 -1.5 1.5] 'Int      Nm/kg      Ext';
+          'Hip Power' [0 100 -3 3] 'W/kg';
+          'Knee Var/Val Moment' [0 100 -1 1] 'Var      Nm/kg      Val';
+          'Knee Flx/Ext Moment' [0 100 -1.5 1.5] 'Flex      Nm/kg      Ext';
+          'Knee Rotation Moment' [0 100 -1.5 1.5] 'Int      Nm/kg      Ext';
+          'Knee Power' [0 100 -3 3] 'W/kg';
+          'Ankle Dor/Pla Moment' [0 100 -1 2] 'Dor      Nm/kg      Plan';
+          'Ankle Power' [0 100 -3 5] 'W/kg'};    
 x_axis = 1:100;
 x = [x_axis,fliplr(x_axis)];
 %% Setting color palett
@@ -22,7 +22,7 @@ grey_shadow = [0.8510    0.8510    0.8510];
 %% Control Group reference area
 sub = 2*length(object.Subject);
 f = figure(i+sub);
-f.Position(3:4) = [750  650];
+f.Position = [10 -20 750  650];
 data_F = CG_Dataset.Moment.Frontal;
 data_S = CG_Dataset.Moment.Sagittal;
 data_T = CG_Dataset.Moment.Transverse;

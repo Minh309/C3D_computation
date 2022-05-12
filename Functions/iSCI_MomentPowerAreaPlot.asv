@@ -3,13 +3,13 @@ function [] = iSCI_MomentPowerAreaPlot(object,i,CG_Dataset)
 % Labels = ['Parameter' [X axis limits Y axis limits], 'Unit']
 Labels = {'Hip Add/Abd Moment' [0 100 -1 1] 'Add      Nm/kg      Abd';
           'Hip Flx/Ext Moment' [0 100 -2 2] 'Flex      Nm/kg      Ext';
-          'Hip Rotation Moment' [0 100 -1.5 1.5] 'Int      Nm/kg      Ext';
+          'Hip Int/Ext Moment' [0 100 -1.5 1.5] 'Nm/kg';
           'Hip Power' [0 100 -3 3] 'W/kg';
-          'Knee Var/Val Moment' [0 100 -1 1] 'Var      Nm/kg      Val';
-          'Knee Flx/Ext Moment' [0 100 -1.5 1.5] 'Flex      Nm/kg      Ext';
-          'Knee Rotation Moment' [0 100 -1.5 1.5] 'Int      Nm/kg      Ext';
+          'Knee Add/Abd Moment' [0 100 -1 1] 'Nm/kg';
+          'Knee Flx/Ext Moment' [0 100 -1.5 1.5] 'Nm/kg';
+          'Knee Int/Ext Moment' [0 100 -1.5 1.5] 'Nm/kg';
           'Knee Power' [0 100 -3 3] 'W/kg';
-          'Ankle Dor/Pla Moment' [0 100 -1 2] 'Dor      Nm/kg      Plan';
+          'Ankle Dor/Pla Moment' [0 100 -1 2] 'Nm/kg';
           'Ankle Power' [0 100 -3 5] 'W/kg'};      
 x_axis = 1:100;
 x = [x_axis,fliplr(x_axis)];
